@@ -9,7 +9,8 @@ class HomePage extends Component {
     paginatedInhabitants: [],
     itemsPerPage: 135,
     numberOfPages: 1,
-    currentPage: 1
+    currentPage: 1,
+    searchName: ''
   }
 
   componentDidMount() {
@@ -24,10 +25,11 @@ class HomePage extends Component {
   }
 
   pagination = (inhabitants, currentPage) => {
-    const { itemsPerPage } = this.state;
-    const numberOfPages = Math.ceil(inhabitants.length / itemsPerPage);
-    const paginatedInhabitants = inhabitants.slice((itemsPerPage * currentPage) - itemsPerPage, itemsPerPage * currentPage);
-    console.log(paginatedInhabitants);
+    const { itemsPerPage, searchName } = this.state;
+    const filteredInhabitants = [...inhabitants].filter(inhabitant => { return inhabitant.name.includes(searchName) });
+    const numberOfPages = Math.ceil(filteredInhabitants.length / itemsPerPage);
+    console.log(searchName, filteredInhabitants)
+    const paginatedInhabitants = filteredInhabitants.slice((itemsPerPage * currentPage) - itemsPerPage, itemsPerPage * currentPage);
     this.setState({
       inhabitants,
       numberOfPages,
@@ -36,11 +38,19 @@ class HomePage extends Component {
     })
   }
 
+  handleChange = (event) => {
+    const { inhabitants, currentPage } = this.state;
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    this.pagination(inhabitants, currentPage);
+  }
+
   render() {
     // const { inhabitants } = this.state;
-    const { paginatedInhabitants, numberOfPages, currentPage, inhabitants } = this.state;
+    const { paginatedInhabitants, numberOfPages, currentPage, inhabitants, searchName } = this.state;
     return (
       <div>
+        <div><input name="searchName" value={searchName} onChange={this.handleChange} placeholder="Filter Gnomes by name :3" /></div>
         {paginatedInhabitants.length === 0 ? <div>Loading... {/*Cool loading animation*/} </div> : (
           <div>
             {paginatedInhabitants.map(inhabitant => {
