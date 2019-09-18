@@ -15,7 +15,9 @@ class SearchResultCard extends Component {
     const { name, age } = this.props.inhabitant;
     return (
       <div>
-        <p>{name} - {age}</p> {this.props.isAllowedVisitor ? <a href="#0" onClick={this.handleFavorite}>&#10084;</a> : <Link to='/favorites'><span>&#10084;</span></Link>}
+        <p>{name} - {age}</p> {this.props.isAllowedVisitor
+          ? <a href="#0" onClick={this.handleFavorite}>&#10084;</a>
+          : <Link to='/favorites'><span>&#10084;</span></Link>}
       </div>
     );
   }

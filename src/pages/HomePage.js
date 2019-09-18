@@ -115,10 +115,8 @@ class HomePage extends Component {
           <div>
             {paginatedInhabitants.map(inhabitant => {
               return <Link key={inhabitant.id}
-                to={{ pathname: `/gnomes/${inhabitant.id}`, gnomeInfo: inhabitant }}
-                params={{ gnomeInfo: inhabitant }}>
+                to={{ pathname: `/gnomes/${inhabitant.id}`, gnomeInfo: inhabitant }}>
                 <SearchResultCard inhabitant={inhabitant} />
-                {/* <p>{inhabitant.name}</p> */}
               </Link>;
             })}
             <div>{Array.from(Array(numberOfPages), (e, i) => {
