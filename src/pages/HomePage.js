@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import SearchResultCard from '../components/SearchResultCard';
+
 import brastlewarkService from '../services/BrastlewarkService';
 
 class HomePage extends Component {
@@ -15,7 +17,8 @@ class HomePage extends Component {
     searchProfession: '',
     searchHairColor: '',
     professionList: [],
-    hairColorList: []
+    hairColorList: [],
+    isLoading: true
   }
 
   // Get all the inhabitants of the town. We save also the list of all professions/hairColor to display it in a select input
@@ -37,7 +40,7 @@ class HomePage extends Component {
 
   // This method paginate the result list to a better UX. The result is filtered by the searchName input value
   pagination = (inhabitants, currentPage) => {
-    const { itemsPerPage, searchName } = this.state;
+    const { itemsPerPage } = this.state;
     const filteredInhabitants = this.filterInhabitants(inhabitants);
     const numberOfPages = Math.ceil(filteredInhabitants.length / itemsPerPage);
     const paginatedInhabitants = filteredInhabitants.slice((itemsPerPage * currentPage) - itemsPerPage, itemsPerPage * currentPage);
@@ -46,7 +49,8 @@ class HomePage extends Component {
       inhabitants,
       numberOfPages,
       paginatedInhabitants,
-      currentPage
+      currentPage,
+      isLoading: false
     })
   }
 
@@ -80,7 +84,18 @@ class HomePage extends Component {
   }
 
   render() {
-    const { paginatedInhabitants, numberOfPages, currentPage, inhabitants, searchName, searchAge, searchProfession, searchHairColor, professionList, hairColorList } = this.state;
+    const { paginatedInhabitants,
+      numberOfPages,
+      currentPage,
+      inhabitants,
+      searchName,
+      searchAge,
+      searchProfession,
+      searchHairColor,
+      professionList,
+      hairColorList,
+      isLoading } = this.state;
+
     return (
       <div>
         <div>
@@ -94,18 +109,23 @@ class HomePage extends Component {
             <option value="">select Hair Color</option>
             {hairColorList.map((color, i) => { return <option key={i} value={color} style={{ color, fontWeight: '700' }}>{color.toUpperCase()}</option> })}
           </select>
-          <a onClick={this.reset}>reset</a>
+          <a href="#0" onClick={this.reset}>reset</a>
         </div>
-        {paginatedInhabitants.length === 0 ? <div>Loading... {/*Cool loading animation*/} </div> : (
+        {paginatedInhabitants.length === 0 ? isLoading ? <div>Loading...</div> : <div>No items </div> : (
           <div>
             {paginatedInhabitants.map(inhabitant => {
               return <Link key={inhabitant.id}
                 to={{ pathname: `/gnomes/${inhabitant.id}`, gnomeInfo: inhabitant }}
                 params={{ gnomeInfo: inhabitant }}>
-                <p>{inhabitant.name}</p>
+                <SearchResultCard inhabitant={inhabitant} />
+                {/* <p>{inhabitant.name}</p> */}
               </Link>;
             })}
-            <div>{Array.from(Array(numberOfPages), (e, i) => { return (numberOfPages > 1) ? <a className={currentPage === i + 1 ? 'u-is-disabled' : ''} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a> : null })}</div>
+            <div>{Array.from(Array(numberOfPages), (e, i) => {
+              return (numberOfPages > 1) ?
+                <a href="#0" className={currentPage === i + 1 ? 'u-is-disabled' : ''} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a>
+                : null
+            })}</div>
           </div>
         )}
       </div >
