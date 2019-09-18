@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import SearchResultCard from '../components/SearchResultCard';
 
@@ -114,10 +113,7 @@ class HomePage extends Component {
         {paginatedInhabitants.length === 0 ? isLoading ? <div>Loading...</div> : <div>No items </div> : (
           <div>
             {paginatedInhabitants.map(inhabitant => {
-              return <Link key={inhabitant.id}
-                to={{ pathname: `/gnomes/${inhabitant.id}`, gnomeInfo: inhabitant }}>
-                <SearchResultCard inhabitant={inhabitant} />
-              </Link>;
+              return <SearchResultCard key={inhabitant.id} inhabitant={inhabitant} getFavoriteList={() => { return null }} />
             })}
             <div>{Array.from(Array(numberOfPages), (e, i) => {
               return (numberOfPages > 1) ?

@@ -13,13 +13,16 @@ class Favorites extends Component {
 
   // Get favoriteList from localStorage
   componentDidMount() {
+    this.getFavoriteList();
+  }
+
+  getFavoriteList = () => {
     let favoriteList = JSON.parse(localStorage.getItem('BrastlewarkVisitor'));
 
     if (favoriteList !== null && favoriteList.favorites !== undefined) {
       brastlewarkService.getAllHabitants()
         .then(response => {
           favoriteList = response.data.Brastlewark.filter(inhabitant => { return favoriteList.favorites.includes(inhabitant.id) });
-          console.log(favoriteList)
           this.setState({
             favoriteList
           })
@@ -39,11 +42,7 @@ class Favorites extends Component {
         <h1>Favorites Page</h1>
         {isAllowedVisitor ? (
           favoriteList.length !== 0
-            ? favoriteList.map((favorite) =>
-              /*<Link key={favorite.id}
-                to={{ pathname: `/gnomes/${favorite.id}`, gnomeInfo: favorite }}>*/
-                <SearchResultCard inhabitant={favorite} />
-              /*</Link>*/)
+            ? favoriteList.map((favorite) => <SearchResultCard key={favorite.id} inhabitant={favorite} getFavoriteList={this.getFavoriteList} />)
             : <p>No items</p>
         ) : (
             <div>

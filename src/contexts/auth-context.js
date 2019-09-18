@@ -7,7 +7,6 @@ class AuthProvider extends Component {
   state = {
     user: null,
     isAllowedVisitor: false,
-    favoriteList: []
   }
 
   componentDidMount() {
@@ -42,22 +41,17 @@ class AuthProvider extends Component {
     : favoriteList.favorites.push(inhabitantId);
 
     localStorage.setItem('BrastlewarkVisitor', JSON.stringify(favoriteList));
-    this.setState({
-      favoriteList: favoriteList.favorites
-    })
-    console.log(localStorage.getItem('BrastlewarkVisitor'))
   }
 
   render() {
-    const { user, isAllowedVisitor, favoriteList } = this.state;
+    const { user, isAllowedVisitor } = this.state;
     return (
       <AuthContext.Provider value={
         {
           user,
           isAllowedVisitor,
           saveVisitorName: this.saveVisitorName,
-          addRemoveFavorite: this.addRemoveFavorite,
-          favoriteList
+          addRemoveFavorite: this.addRemoveFavorite
         }
       }>
         {this.props.children}
