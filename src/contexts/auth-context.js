@@ -7,6 +7,7 @@ class AuthProvider extends Component {
   state = {
     user: null,
     isAllowedVisitor: false,
+    favoriteList: []
   }
 
   componentDidMount() {
@@ -34,21 +35,29 @@ class AuthProvider extends Component {
   // Check is we have favorite list in localStorage, and store the selected id if not
   addRemoveFavorite = (inhabitantId) => {
     let favoriteList = JSON.parse(localStorage.getItem('BrastlewarkVisitor'));
-    favoriteList.favorites === undefined ? favoriteList.favorites = [inhabitantId] : favoriteList.favorites.push(inhabitantId);
+    favoriteList.favorites === undefined 
+    ? favoriteList.favorites = [inhabitantId] 
+    : favoriteList.favorites.includes(inhabitantId) 
+    ? favoriteList.favorites.splice(favoriteList.favorites.indexOf(inhabitantId),1) 
+    : favoriteList.favorites.push(inhabitantId);
 
     localStorage.setItem('BrastlewarkVisitor', JSON.stringify(favoriteList));
+    this.setState({
+      favoriteList: favoriteList.favorites
+    })
     console.log(localStorage.getItem('BrastlewarkVisitor'))
   }
 
   render() {
-    const { user, isAllowedVisitor } = this.state;
+    const { user, isAllowedVisitor, favoriteList } = this.state;
     return (
       <AuthContext.Provider value={
         {
           user,
           isAllowedVisitor,
           saveVisitorName: this.saveVisitorName,
-          addRemoveFavorite: this.addRemoveFavorite
+          addRemoveFavorite: this.addRemoveFavorite,
+          favoriteList
         }
       }>
         {this.props.children}

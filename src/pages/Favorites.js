@@ -15,7 +15,7 @@ class Favorites extends Component {
   componentDidMount() {
     let favoriteList = JSON.parse(localStorage.getItem('BrastlewarkVisitor'));
 
-    if (favoriteList.favorites !== undefined) {
+    if (favoriteList !== null && favoriteList.favorites !== undefined) {
       brastlewarkService.getAllHabitants()
         .then(response => {
           favoriteList = response.data.Brastlewark.filter(inhabitant => { return favoriteList.favorites.includes(inhabitant.id) });
@@ -40,14 +40,14 @@ class Favorites extends Component {
         {isAllowedVisitor ? (
           favoriteList.length !== 0
             ? favoriteList.map((favorite) =>
-              <Link key={favorite.id}
-                to={{ pathname: `/gnomes/${favorite.id}`, gnomeInfo: favorite }}>
+              /*<Link key={favorite.id}
+                to={{ pathname: `/gnomes/${favorite.id}`, gnomeInfo: favorite }}>*/
                 <SearchResultCard inhabitant={favorite} />
-              </Link>)
+              /*</Link>*/)
             : <p>No items</p>
         ) : (
             <div>
-              <p>Hey! Who are you? Have you jumped the wall?!</p>
+              <p>Hey! Who are you? Did you jump the wall?!</p>
               <p>You have to be registered to access to Hall of Fame!</p>
               <Link to="/welcome">Go back to the entrance</Link>
             </div>

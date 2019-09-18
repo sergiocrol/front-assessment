@@ -1,23 +1,45 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import WithAuth from '../components/WithAuth.js';
 
 class SearchResultCard extends Component {
+  state = {
+    redirect: false,
+    redirectToInhabitant: false,
+    favoriteList: []
+  }
 
-  handleFavorite = () => {
-    const { addRemoveFavorite, inhabitant } = this.props;
-    addRemoveFavorite(inhabitant.id);
+  // Heart icon. Whe there is a user in localStore, save the favorite ID; otherwise make a redirection to welcome page
+  handleFavorite = (event) => {
+    event.stopPropagation();
+    const { addRemoveFavorite, inhabitant, isAllowedVisitor, favoriteList } = this.props;
+    if(isAllowedVisitor) {
+      addRemoveFavorite(inhabitant.id);
+      this.setState({
+        favoriteList
+      })
+    }else{
+      this.setState({
+        redirect: true
+      })
+    }
+  }
+
+  redirectToInhabitant = () => {
+    this.setState({
+      redirectToInhabitant: true
+    })
   }
 
   render() {
-    const { name, age } = this.props.inhabitant;
+    const { name, age, id } = this.props.inhabitant;
+    if(this.state.redirect) { return <Redirect to='/favorites' /> }
+    if(this.state.redirectToInhabitant) { return <Redirect to={`/gnomes/${id}`}/> }
     return (
-      <div>
-        <p>{name} - {age}</p> {this.props.isAllowedVisitor
-          ? <a href="#0" onClick={this.handleFavorite}>&#10084;</a>
-          : <Link to='/favorites'><span>&#10084;</span></Link>}
+      <div className="card-color" onClick={this.redirectToInhabitant}>
+        <p>{name} - {age}</p> <span className="heart" onClick={this.handleFavorite}>&#10084;</span>
       </div>
     );
   }
