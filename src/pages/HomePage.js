@@ -10,7 +10,8 @@ class HomePage extends Component {
     itemsPerPage: 135,
     numberOfPages: 1,
     currentPage: 1,
-    searchName: ''
+    searchName: '',
+    searchAge: ''
   }
 
   componentDidMount() {
@@ -24,9 +25,10 @@ class HomePage extends Component {
       });
   }
 
+  // This method paginate the result list to a better UX. The result is filtered by the searchName input value
   pagination = (inhabitants, currentPage) => {
     const { itemsPerPage, searchName } = this.state;
-    const filteredInhabitants = [...inhabitants].filter(inhabitant => { return inhabitant.name.includes(searchName) });
+    const filteredInhabitants = this.filterInhabitants(inhabitants);
     const numberOfPages = Math.ceil(filteredInhabitants.length / itemsPerPage);
     console.log(searchName, filteredInhabitants)
     const paginatedInhabitants = filteredInhabitants.slice((itemsPerPage * currentPage) - itemsPerPage, itemsPerPage * currentPage);
@@ -38,19 +40,30 @@ class HomePage extends Component {
     })
   }
 
+  // Helper function to filter by different parameters
+  filterInhabitants = (inhabitants) => {
+    const { searchName, searchAge } = this.state;
+    let filterInhabitants = [...inhabitants].filter(inhabitant => { return inhabitant.name.toLowerCase().includes(searchName.toLowerCase()) });
+    filterInhabitants = [...filterInhabitants].filter(inhabitant => { return inhabitant.age.toString().includes(searchAge) });
+    return filterInhabitants;
+  }
+
   handleChange = (event) => {
     const { inhabitants, currentPage } = this.state;
     const { name, value } = event.target;
-    this.setState({ [name]: value });
-    this.pagination(inhabitants, currentPage);
+    this.setState({ [name]: value },
+      () => { this.pagination(inhabitants, currentPage); });
   }
 
   render() {
     // const { inhabitants } = this.state;
-    const { paginatedInhabitants, numberOfPages, currentPage, inhabitants, searchName } = this.state;
+    const { paginatedInhabitants, numberOfPages, currentPage, inhabitants, searchName, searchAge } = this.state;
     return (
       <div>
-        <div><input name="searchName" value={searchName} onChange={this.handleChange} placeholder="Filter Gnomes by name :3" /></div>
+        <div>
+          <input type="text" name="searchName" value={searchName} onChange={this.handleChange} placeholder="Filter Gnomes by name :3" />
+          <input type="number" name="searchAge" value={searchAge} onChange={this.handleChange} placeholder="age" />
+        </div>
         {paginatedInhabitants.length === 0 ? <div>Loading... {/*Cool loading animation*/} </div> : (
           <div>
             {paginatedInhabitants.map(inhabitant => {
