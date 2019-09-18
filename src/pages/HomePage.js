@@ -61,14 +61,25 @@ class HomePage extends Component {
   }
 
   handleChange = (event) => {
-    const { inhabitants, currentPage } = this.state;
+    const { inhabitants } = this.state;
     const { name, value } = event.target;
     this.setState({ [name]: value },
-      () => { this.pagination(inhabitants, currentPage); });
+      () => { this.pagination(inhabitants, 1); });
+  }
+
+  // Reset all the filtering fields
+  reset = () => {
+    const { inhabitants } = this.state;
+
+    this.setState({
+      searchName: '',
+      searchAge: '',
+      searchProfession: '',
+      searchHairColor: ''
+    }, () => { this.pagination(inhabitants, 1) })
   }
 
   render() {
-    // const { inhabitants } = this.state;
     const { paginatedInhabitants, numberOfPages, currentPage, inhabitants, searchName, searchAge, searchProfession, searchHairColor, professionList, hairColorList } = this.state;
     return (
       <div>
@@ -81,8 +92,9 @@ class HomePage extends Component {
           </select>
           <select name="searchHairColor" onChange={this.handleChange} value={searchHairColor}>
             <option value="">select Hair Color</option>
-            {hairColorList.map((color, i) => { return <option key={i} value={color} style={{ color, fontWeight: '700' }}>&#11044;  {color.toUpperCase()}</option> })}
+            {hairColorList.map((color, i) => { return <option key={i} value={color} style={{ color, fontWeight: '700' }}>{color.toUpperCase()}</option> })}
           </select>
+          <a onClick={this.reset}>reset</a>
         </div>
         {paginatedInhabitants.length === 0 ? <div>Loading... {/*Cool loading animation*/} </div> : (
           <div>
@@ -93,7 +105,7 @@ class HomePage extends Component {
                 <p>{inhabitant.name}</p>
               </Link>;
             })}
-            <div>{Array.from(Array(numberOfPages), (e, i) => { return <a key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a> })}</div>
+            <div>{Array.from(Array(numberOfPages), (e, i) => { return (numberOfPages > 1) ? <a className={currentPage === i + 1 ? 'u-is-disabled' : ''} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a> : null })}</div>
           </div>
         )}
       </div >
