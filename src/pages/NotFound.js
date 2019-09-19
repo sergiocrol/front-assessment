@@ -12,7 +12,7 @@ class NotFound extends Component {
         <div className="homepage">
           <div className="homepage-container">
             <div className="notfound">
-              <img src={notfoundImage}/>
+              <img src={notfoundImage} alt="404 - Not Found"/>
             </div>
           </div>
         </div>

@@ -7,12 +7,13 @@ const WithAuth = (Comp) => {
     render() {
       return (
         <AuthContext.Consumer>
-          {({ user, isAllowedVisitor, addRemoveFavorite, saveVisitorName }) => (
+          {({ user, isAllowedVisitor, addRemoveFavorite, saveVisitorName, deleteUser }) => (
             <Comp
               user={user}
               isAllowedVisitor={isAllowedVisitor}
               addRemoveFavorite={addRemoveFavorite}
               saveVisitorName={saveVisitorName}
+              deleteUser={deleteUser}
               {...this.props}
             />
           )}

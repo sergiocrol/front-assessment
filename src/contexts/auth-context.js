@@ -31,6 +31,13 @@ class AuthProvider extends Component {
     }
   }
 
+  deleteUser = () => {
+    localStorage.removeItem('BrastlewarkVisitor');
+    this.setState({
+      isAllowedVisitor: false,
+    })
+  }
+
   // Check is we have favorite list in localStorage, and store the selected id if not
   addRemoveFavorite = (inhabitantId) => {
     let favoriteList = JSON.parse(localStorage.getItem('BrastlewarkVisitor'));
@@ -51,7 +58,8 @@ class AuthProvider extends Component {
           user,
           isAllowedVisitor,
           saveVisitorName: this.saveVisitorName,
-          addRemoveFavorite: this.addRemoveFavorite
+          addRemoveFavorite: this.addRemoveFavorite,
+          deleteUser: this.deleteUser
         }
       }>
         {this.props.children}

@@ -9,7 +9,8 @@ import brastlewarkService from '../services/BrastlewarkService';
 
 class Favorites extends Component {
   state = {
-    favoriteList: []
+    favoriteList: [],
+    name: 'Visitor'
   }
 
   // Get favoriteList from localStorage
@@ -20,12 +21,13 @@ class Favorites extends Component {
   getFavoriteList = () => {
     let favoriteList = JSON.parse(localStorage.getItem('BrastlewarkVisitor'));
 
+    if(favoriteList !== null){this.setState({name: favoriteList.name})}
     if (favoriteList !== null && favoriteList.favorites !== undefined) {
       brastlewarkService.getAllHabitants()
         .then(response => {
           favoriteList = response.data.Brastlewark.filter(inhabitant => { return favoriteList.favorites.includes(inhabitant.id) });
           this.setState({
-            favoriteList
+            favoriteList,
           })
         })
         .catch(error => {
@@ -36,8 +38,8 @@ class Favorites extends Component {
 
   // Display the appropiate message if user is not allowed or favoriteList is empty
   render() {
-    const { isAllowedVisitor } = this.props;
-    const { favoriteList } = this.state;
+    let { isAllowedVisitor } = this.props;
+    const { favoriteList, name } = this.state;
     return (
       <div>
         <Header />
@@ -45,7 +47,7 @@ class Favorites extends Component {
           <div className="homepage-container">
             <div className="homepage-searchbox u-margin-bottom-medium favorites-searchbox">
               <div className="triangle"></div>
-              <h1>Here are your favorites</h1>
+              <h1><span>{name}</span>, your favorites</h1>
               <h2><span>(</span>AKA Tindegnomer :3<span>)</span></h2>
             </div>
             <div className="homepage-resultbody">
