@@ -15,7 +15,7 @@ class SearchResultCard extends Component {
     this.updateFavoriteList();
   }
 
-  // Heart icon. Whe there is a user in localStore, save the favorite ID; otherwise make a redirection to welcome page
+  // Heart icon: If there is a user in localStore, save the selected ID; otherwise make a redirection to welcome page
   handleFavorite = (event) => {
     event.stopPropagation();
     const { addRemoveFavorite, inhabitant, isAllowedVisitor } = this.props;

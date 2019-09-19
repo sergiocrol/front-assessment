@@ -12,6 +12,7 @@ class Header extends Component {
     redirect: false
   }
 
+  // Delete user from the localStorage
   deleteUser = () => {
     this.props.deleteUser();
     this.setState({

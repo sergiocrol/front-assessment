@@ -10,7 +10,7 @@ class GnomeDetail extends Component {
     gnomeInfo: this.props.location.gnomeInfo
   }
 
-  // Make a new API call only in case of state's lost
+  // Make a new API call only in case of state lost
   componentDidMount() {
     const { gnomeInfo } = this.state;
     if (gnomeInfo === undefined) {
@@ -37,7 +37,7 @@ class GnomeDetail extends Component {
           <div className="gnomedetail-container">
             <h1 className="u-padding-top-small u-margin-bottom-small">Gnome details</h1>
             {gnomeInfo === undefined ? <div>Loading...</div> : (
-              <div className="gnomedetail-card">
+              <div className="gnomedetail-card u-padding-bottom-small">
                 <div className="back-button" onClick={() => this.props.history.push('/homepage')}>&#171; back</div>
                 <p className="gnomedetail-card-name">{gnomeInfo.name}</p>
                 <div className="gnomedetail-card-image"><img src={gnomeInfo.thumbnail} alt={gnomeInfo.name} /></div>

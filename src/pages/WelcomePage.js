@@ -15,10 +15,7 @@ class WelcomePage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const saveName = this.props.saveVisitorName(this.state.name);
-    if (!saveName) {
-      console.log('You must enter a name to continue! >:(')
-    }
+    this.props.saveVisitorName(this.state.name);
   }
 
   render() {
