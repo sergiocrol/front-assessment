@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import SearchResultCard from '../components/SearchResultCard';
+import Header from '../components/Header';
 
 import brastlewarkService from '../services/BrastlewarkService';
 
@@ -97,6 +98,7 @@ class HomePage extends Component {
 
     return (
       <div>
+        <Header />
         <div>
           <input type="text" name="searchName" value={searchName} onChange={this.handleChange} placeholder="Filter Gnomes by name :3" />
           <input type="number" name="searchAge" value={searchAge} onChange={this.handleChange} placeholder="age" />
