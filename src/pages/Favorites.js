@@ -48,17 +48,19 @@ class Favorites extends Component {
               <h1>Here are your favorites</h1>
               <h2><span>(</span>AKA Tindegnomer :3<span>)</span></h2>
             </div>
+            <div className="homepage-resultbody">
             {isAllowedVisitor ? (
               favoriteList.length !== 0
                 ? favoriteList.map((favorite) => <SearchResultCard key={favorite.id} inhabitant={favorite} getFavoriteList={this.getFavoriteList} />)
-                : <p>No items</p>
+                : <div className="homepage-empty">Love isn't in the air&nbsp;<span>:(</span> </div>
             ) : (
-                <div>
-                  <p>Hey! Who are you? Did you jump the wall?!</p>
-                  <p>You have to be registered to access to Hall of Fame!</p>
-                  <Link to="/welcome">Go back to the entrance</Link>
+                <div className="homepage-empty">
+                  <p>Hey! Who are you? What's your name?</p>
+                  <p>You have to be registered to enter here!</p>
+                  <Link to="/welcome" className="button u-margin-top-medium back">Go back to the entrance</Link>
                 </div>
               )}
+            </div>
           </div>
         </div>
       </div>

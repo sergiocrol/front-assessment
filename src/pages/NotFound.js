@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function NotFound() {
-  return (
-    <div>
+import Header from '../components/Header';
+import notfoundImage from '../images/404.jpg';
 
-    </div>
-  );
+class NotFound extends Component {
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <div className="homepage">
+          <div className="homepage-container">
+            <div className="notfound">
+              <img src={notfoundImage}/>
+            </div>
+          </div>
+        </div>
+      </div >
+    );
+  }
 }
 
 export default NotFound;

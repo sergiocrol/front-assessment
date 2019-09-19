@@ -17,3 +17,13 @@
     }
   }
 }
+
+  .back {
+    padding: 3px 1rem;
+    border-radius: 2rem;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.2);
+
+    @media screen and (min-width: 768px) {
+      font-size: 2rem;
+    }
+  }
