@@ -16,16 +16,3 @@ $color-black: #000;
 
 // FONT 
 $default-font-size: 1.6rem;
-
-.card-color {
-  background-color: aliceblue;
-  position: relative;
-  z-index: 0;
-
-  .heart {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 100;
-  }
-}

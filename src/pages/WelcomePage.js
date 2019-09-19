@@ -25,12 +25,12 @@ class WelcomePage extends Component {
     return (
       <div>
         <h2>Welcome to</h2>
-        <h1>Brastlewark!</h1>
+        <h2>BRASTLEWARK!</h2>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="name" value={name} onChange={this.handleChange} placeholder="Tsssh, human, what's yout name?" />
           <button type="submit">Open the door</button>
         </form>
-      </div>
+      </div >
     );
   }
 }

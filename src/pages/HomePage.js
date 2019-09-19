@@ -43,7 +43,7 @@ class HomePage extends Component {
     const filteredInhabitants = this.filterInhabitants(inhabitants);
     const numberOfPages = Math.ceil(filteredInhabitants.length / itemsPerPage);
     const paginatedInhabitants = filteredInhabitants.slice((itemsPerPage * currentPage) - itemsPerPage, itemsPerPage * currentPage);
-    console.log(paginatedInhabitants)
+
     this.setState({
       inhabitants,
       numberOfPages,

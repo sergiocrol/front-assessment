@@ -8,7 +8,6 @@ class SearchResultCard extends Component {
   state = {
     redirect: false,
     redirectToInhabitant: false,
-    color: '#777',
     favoriteList: []
   }
 
@@ -33,9 +32,11 @@ class SearchResultCard extends Component {
   updateFavoriteList = () => {
     const { getFavoriteList } = this.props;
     const favoriteList = JSON.parse(localStorage.getItem('BrastlewarkVisitor'));
-    this.setState({
-      favoriteList: favoriteList.favorites
-    }, () => { getFavoriteList() })
+    if (favoriteList !== null && favoriteList.favorites !== undefined) {
+      this.setState({
+        favoriteList: favoriteList.favorites
+      }, () => { getFavoriteList() })
+    }
   }
 
   redirectToInhabitant = () => {
@@ -50,8 +51,8 @@ class SearchResultCard extends Component {
     if (this.state.redirect) { return <Redirect to='/favorites' /> }
     if (this.state.redirectToInhabitant) { return <Redirect to={`/gnomes/${id}`} /> }
     return (
-      <div className="card-color" onClick={this.redirectToInhabitant}>
-        <p>{name} - {age}</p> <span className="heart" onClick={this.handleFavorite} style={favoriteList.includes(id) ? { color: '#F2627A' } : { color: '#777' }}>&#10084;</span>
+      <div className="search-card" onClick={this.redirectToInhabitant}>
+        <p>{name} - {age}</p> <span className="search-card-heart" onClick={this.handleFavorite} style={favoriteList.includes(id) ? { color: '#F2627A' } : { color: '#adabab' }}>{/*&#9829;*/}&#10084;</span>
       </div>
     );
   }

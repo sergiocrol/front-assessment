@@ -1,0 +1,15 @@
+.search-card {
+  background-color: aliceblue;
+  position: relative;
+  height: 10rem;
+  border: 1px solid lightcoral;
+  z-index: 0;
+
+  &-heart {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 6rem;
+    z-index: 100;
+  }
+}
