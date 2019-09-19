@@ -46,13 +46,15 @@ class SearchResultCard extends Component {
   }
 
   render() {
-    const { name, age, id } = this.props.inhabitant;
+    const { name, age, id, hair_color } = this.props.inhabitant;
     const { favoriteList } = this.state;
     if (this.state.redirect) { return <Redirect to='/favorites' /> }
     if (this.state.redirectToInhabitant) { return <Redirect to={`/gnomes/${id}`} /> }
     return (
       <div className="search-card" onClick={this.redirectToInhabitant}>
-        <p>{name} - {age}</p> <span className="search-card-heart" onClick={this.handleFavorite} style={favoriteList.includes(id) ? { color: '#F2627A' } : { color: '#adabab' }}>{/*&#9829;*/}&#10084;</span>
+        <div className="search-card-haircolor" style={{backgroundColor: hair_color}}></div>
+        <div className="search-card-info"><p className="search-card-info-name">{name}</p> <p className="search-card-info-age">age <span>{age}</span></p></div>
+        <span className="search-card-heart" onClick={this.handleFavorite} style={favoriteList.includes(id) ? { color: '#F2627A' } : { color: '#adabab' }}>{/*&#9829;*/}&#10084;</span>
       </div>
     );
   }

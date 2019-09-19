@@ -99,31 +99,42 @@ class HomePage extends Component {
     return (
       <div>
         <Header />
-        <div>
-          <input type="text" name="searchName" value={searchName} onChange={this.handleChange} placeholder="Filter Gnomes by name :3" />
-          <input type="number" name="searchAge" value={searchAge} onChange={this.handleChange} placeholder="age" />
-          <select name="searchProfession" onChange={this.handleChange} value={searchProfession}>
-            <option value="">select profession</option>
-            {professionList.map((profession, i) => { return <option key={i} value={profession}>{profession}</option> })}
-          </select>
-          <select name="searchHairColor" onChange={this.handleChange} value={searchHairColor}>
-            <option value="">select Hair Color</option>
-            {hairColorList.map((color, i) => { return <option key={i} value={color} style={{ color, fontWeight: '700' }}>{color.toUpperCase()}</option> })}
-          </select>
-          <a href="#0" onClick={this.reset}>reset</a>
-        </div>
+        <div className="homepage">
+          <div className="homepage-container">
+            <div className="homepage-searchbox u-margin-bottom-medium">
+              <div className="triangle"></div>
+              <input className="homepage-searchbox-name input" type="text" name="searchName" value={searchName} onChange={this.handleChange} placeholder="Filter Gnomes by name :3" />
+                <div className="u-margin-top-small u-margin-bottom-small">
+                  <input className="input" type="number" name="searchAge" value={searchAge} onChange={this.handleChange} placeholder="age" />
+                  <span></span>
+                  <select className="select" name="searchProfession" onChange={this.handleChange} value={searchProfession}>
+                    <option value="">profession</option>
+                    {professionList.map((profession, i) => { return <option key={i} value={profession}>{profession}</option> })}
+                  </select>
+                  <span></span>
+                  <select className="select" name="searchHairColor" onChange={this.handleChange} value={searchHairColor}>
+                    <option value="">Hair Color</option>
+                    {hairColorList.map((color, i) => { return <option key={i} value={color} style={{ color, fontWeight: '700' }}>{color.toUpperCase()}</option> })}
+                  </select>
+                </div>
+              <a className="button" href="#0" onClick={this.reset}>reset</a>
+            </div>
         {paginatedInhabitants.length === 0 ? isLoading ? <div>Loading...</div> : <div>No items </div> : (
-          <div>
+          <div className="homepage-resultbody">
             {paginatedInhabitants.map(inhabitant => {
               return <SearchResultCard key={inhabitant.id} inhabitant={inhabitant} getFavoriteList={() => { return null }} />
             })}
-            <div>{Array.from(Array(numberOfPages), (e, i) => {
+            <div>
+            {Array.from(Array(numberOfPages), (e, i) => {
               return (numberOfPages > 1) ?
-                <a href="#0" className={currentPage === i + 1 ? 'u-is-disabled' : ''} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a>
-                : null
-            })}</div>
+              <a href="#0" className={currentPage === i + 1 ? 'u-is-disabled' : ''} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a>
+              : null
+            })}
+            </div>
           </div>
         )}
+        </div>
+      </div>
       </div >
     );
   }
