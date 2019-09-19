@@ -1,0 +1,19 @@
+.favorites-searchbox {
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 1.5rem;
+
+    span {
+      color: $color-primary-coral;
+    }
+  }
+}

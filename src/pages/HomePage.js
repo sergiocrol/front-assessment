@@ -119,15 +119,15 @@ class HomePage extends Component {
                 </div>
               <a className="button" href="#0" onClick={this.reset}>reset</a>
             </div>
-        {paginatedInhabitants.length === 0 ? isLoading ? <div>Loading...</div> : <div>No items </div> : (
+        {paginatedInhabitants.length === 0 ? isLoading ? <div className="homepage-empty">Loading...</div> : <div className="homepage-empty">No results&nbsp;<span>:(</span> </div> : (
           <div className="homepage-resultbody">
             {paginatedInhabitants.map(inhabitant => {
               return <SearchResultCard key={inhabitant.id} inhabitant={inhabitant} getFavoriteList={() => { return null }} />
             })}
-            <div>
+            <div className="homepage-pagination u-margin-bottom-small u-margin-top-small">
             {Array.from(Array(numberOfPages), (e, i) => {
               return (numberOfPages > 1) ?
-              <a href="#0" className={currentPage === i + 1 ? 'u-is-disabled' : ''} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a>
+              <a className="button" href="#0" className={currentPage === i + 1 ? 'button u-is-disabled' : 'button'} key={i} onClick={() => this.pagination(inhabitants, i + 1)}>{i + 1}</a>
               : null
             })}
             </div>

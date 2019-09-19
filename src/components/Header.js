@@ -8,7 +8,7 @@ function Header() {
   return (
     <div className="header">
       <div className="header-container">
-        <span>BRASTLEWARK</span>
+      <Link to="/homepage" style={{ textDecoration: 'none' }}><span>BRASTLEWARK</span></Link> 
         <div> 
           <Link to="/favorites"><img src={heart} alt="favorites"/></Link> 
           <Link to="/"><img className="header-container-exit" src={exit} alt="logout" /></Link> 

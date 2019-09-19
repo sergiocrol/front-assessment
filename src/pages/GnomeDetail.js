@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+
+import Header from '../components/Header';
 
 import brastlewarkService from '../services/BrastlewarkService';
 
@@ -30,14 +33,34 @@ class GnomeDetail extends Component {
     const { gnomeInfo } = this.state;
     return (
       <div>
-        <h1>Gnome Detail</h1>
-        {gnomeInfo === undefined ? <div>Loading...</div> : (
-          <div>
-            <p>{gnomeInfo.name}</p>
-            <p>{gnomeInfo.age}</p>
-            <img src={gnomeInfo.thumbnail} alt={gnomeInfo.name} />
+        <Header/>
+        <div className="gnomedetail">
+          <div className="gnomedetail-container">
+            <h1 className="u-padding-top-small u-margin-bottom-small">Gnome details</h1>
+            {gnomeInfo === undefined ? <div>Loading...</div> : (
+              <div className="gnomedetail-card">
+                <div className="back-button" onClick={() => this.props.history.push('/homepage')}>&#171; back</div>
+                <p className="gnomedetail-card-name">{gnomeInfo.name}</p>
+                <div className="gnomedetail-card-image"><img src={gnomeInfo.thumbnail} alt={gnomeInfo.name} /></div>
+                <div className="gnomedetail-card-age"><p>age <span>{gnomeInfo.age}</span></p><p>w <span>{gnomeInfo.weight}</span></p><p>h <span>{gnomeInfo.height}</span></p></div>
+                <div className="gnomedetail-card-friends u-margin-top-small">
+                  <h2>friends</h2>
+                  {gnomeInfo.friends.length === 0 
+                    ? <p>Ok, ok... no time for friends, just to work</p> 
+                    : <div className="gnomedetail-card-tagbody">{gnomeInfo.friends.map((friend,i) => <span key={i}>{friend}</span>)}</div>
+                  }
+                </div>
+                <div className="gnomedetail-card-professions u-margin-top-small">
+                  <h2>professions</h2>
+                  {gnomeInfo.professions.length === 0 
+                    ? <p>Nice life...</p> 
+                    : <div className="gnomedetail-card-tagbody">{gnomeInfo.professions.map((profession,i) => <span key={i}>{profession}</span>)}</div>
+                  }
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     );
   }
