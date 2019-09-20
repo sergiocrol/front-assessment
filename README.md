@@ -1,4 +1,5 @@
 # Frontend Assessment
+![frontend](https://res.cloudinary.com/drcjcovjy/image/upload/v1568943437/misc/front_nzjoba.png)
 
 ## What is this app
 
@@ -58,9 +59,9 @@ npm start
 ## Libraries
 
 - **react:** v16.9.0
-- **react-router-dom:** To the navigation between different components
-- **axios:** To handle Ajax Requests
-- **nose-sass:** To compile scss to css
+- **react-router-dom:** Navigation between different components
+- **axios:**  Handle Ajax Requests
+- **nose-sass:** Compile scss to css
 
 ## Git
 
