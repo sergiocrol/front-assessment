@@ -67,6 +67,10 @@ npm start
 
 [Repository Link](https://github.com/sergiocrol/front-assessment)
 
+## Deployment
+
+[Deployment Link](https://sergiocrol.github.io/hitza)
+
 ## Author
 
 [Sergio Cordero Rol](https://github.com/sergiocrol)
