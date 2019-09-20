@@ -1,6 +1,10 @@
 # Frontend Assessment
 ![frontend](https://res.cloudinary.com/drcjcovjy/image/upload/v1568943437/misc/front_nzjoba.png)
 
+## Demo
+
+You can visit here the [deployed app](https://sergiocrol.github.io/hitza)
+
 ## What is this app
 
 This app allows the user to get the information of users (habitants from now) obtained from an external API.
