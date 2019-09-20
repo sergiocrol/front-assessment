@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Frontend Assessment
 
-## Available Scripts
+## What is this app
 
-In the project directory, you can run:
+This app allows the user to get the information of users (habitants from now) obtained from an external API.
+The user will be able to filter this information, see the details of the selected habitant, as well as create a
+list of favorite habitants that will be saved on the localStorage.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Clone the repository
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Clone this repository to your local machine
 
-### `npm test`
+```bash
+git clone git@github.com:sergiocrol/front-assessment.git
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### installation
 
-### `npm run build`
+Install the dependencies
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### run app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start the application, and will be running on port 3000
 
-### `npm run eject`
+```
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## What can I do
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-  **404:** As a user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault.
+-  **Login:** As a user I can login to the app with my name, and this information will be saved in the localStorage.
+-  **Logout** As a user I can logout of the app, so the info will be removed from localStorage.
+-  **List of habitants** As a user I can see a paginated list of all habitants of the town.
+-  **Filter search** As a user I can filter the search in base a name, age, profession or hair color.
+-  **Habitant's details** As a user I can see the detailed information of any user.
+-  **Save favorites** As a user I can save habitants as favorites.
+-  **Remove favorites** As a user I can remove habitants from favorites.
+-  **List of favorites** As a user I can see a list of favorite users.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Routes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+| Path                      | Component            | Permissions | Behavior                                                           |
+| ------------------------- | -------------------- | ----------- | -------------------------------------------------------------------|
+| `/`                       | ***                  | anon/user   | Redirects user to /welcome                                         |
+| `/welcome`                | WelcomePage          | anon        | Anon user can save his name in localStorage                        |
+| `/homepage`               | HomePage             | anon/user   | Any user can see/filter a list of habitants                        |
+| `/favorites`              | Favorites            | anon/user   | Any user can access. Only a registered user can see/modify the info|
+| `/gnomes`                 | ***                  | anon/user   | Redirects user to /welcome                                         |
+| `/gnomes/:id`             | GnomeDetail          | anon/user   | Any user can access to the detailed information of an habitant     |              |
 
-## Learn More
+## Libraries
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **React** v16.9.0
+- **React-router-dom** To the navigation between different components
+- **axios** To handle Ajax Requests
+- **nose-sass** To compile scss to css
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Git
 
-### Code Splitting
+[Repository Link](https://github.com/sergiocrol/front-assessment)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Author
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Sergio Cordero Rol [sergiocrol](https://github.com/sergiocrol)
