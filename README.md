@@ -36,31 +36,31 @@ npm start
 
 -  **404:** As a user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault.
 -  **Login:** As a user I can login to the app with my name, and this information will be saved in the localStorage.
--  **Logout** As a user I can logout of the app, so the info will be removed from localStorage.
--  **List of habitants** As a user I can see a paginated list of all habitants of the town.
--  **Filter search** As a user I can filter the search in base a name, age, profession or hair color.
--  **Habitant's details** As a user I can see the detailed information of any user.
--  **Save favorites** As a user I can save habitants as favorites.
--  **Remove favorites** As a user I can remove habitants from favorites.
--  **List of favorites** As a user I can see a list of favorite users.
+-  **Logout:** As a user I can logout of the app, so the info will be removed from localStorage.
+-  **List of habitants:** As a user I can see a paginated list of all habitants of the town.
+-  **Filter search:** As a user I can filter the search in base a name, age, profession or hair color.
+-  **Habitant's details:** As a user I can see the detailed information of any user.
+-  **Save favorites:** As a user I can save habitants as favorites.
+-  **Remove favorites:** As a user I can remove habitants from favorites.
+-  **List of favorites:** As a user I can see a list of favorite users.
 
 ## Routes
 
 | Path                      | Component            | Permissions | Behavior                                                           |
 | ------------------------- | -------------------- | ----------- | -------------------------------------------------------------------|
-| `/`                       | ***                  | anon/user   | Redirects user to /welcome                                         |
+| `/`                       | ***                  | anon/user   | Redirects the user to /welcome                                     |
 | `/welcome`                | WelcomePage          | anon        | Anon user can save his name in localStorage                        |
 | `/homepage`               | HomePage             | anon/user   | Any user can see/filter a list of habitants                        |
 | `/favorites`              | Favorites            | anon/user   | Any user can access. Only a registered user can see/modify the info|
-| `/gnomes`                 | ***                  | anon/user   | Redirects user to /welcome                                         |
-| `/gnomes/:id`             | GnomeDetail          | anon/user   | Any user can access to the detailed information of an habitant     |              |
+| `/gnomes`                 | ***                  | anon/user   | Redirects the user to /welcome                                     |
+| `/gnomes/:id`             | GnomeDetail          | anon/user   | Any user can access to the detailed information of an habitant     |              
 
 ## Libraries
 
-- **React** v16.9.0
-- **React-router-dom** To the navigation between different components
-- **axios** To handle Ajax Requests
-- **nose-sass** To compile scss to css
+- **react:** v16.9.0
+- **react-router-dom:** To the navigation between different components
+- **axios:** To handle Ajax Requests
+- **nose-sass:** To compile scss to css
 
 ## Git
 
@@ -68,4 +68,4 @@ npm start
 
 ## Author
 
-Sergio Cordero Rol [sergiocrol](https://github.com/sergiocrol)
+[Sergio Cordero Rol](https://github.com/sergiocrol)
