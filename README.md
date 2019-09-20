@@ -3,7 +3,7 @@
 
 ## Demo
 
-You can visit here the [deployed app](https://sergiocrol.github.io/hitza) <br>
+You can visit here the [deployed app](https://sergiocrol.github.io/hitza) <br><br>
 (Because of the bad relationship between GitHub Pages and React Router, in the deployed app the navigation should be made with the buttons provided by the app (i.e: use the header's name link to go back to the homepage), and not with the controls of the browser).
 
 ## What is this app
