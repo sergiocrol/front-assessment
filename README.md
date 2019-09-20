@@ -1,4 +1,5 @@
 # Frontend Assessment
+![frontend](https://res.cloudinary.com/drcjcovjy/image/upload/v1568943437/misc/front_nzjoba.png)
 
 ## What is this app
 
